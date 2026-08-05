@@ -1,0 +1,209 @@
+@import 'leaflet/dist/leaflet.css';
+
+
+
+
+// Menu
+
+
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 1rem 2rem;
+  background: #1f2937;
+  color: white;
+
+  #logo {
+    a {
+      text-decoration: none;
+      color: white;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+  }
+
+  #menu {
+    display: flex;
+    align-items: center;
+
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+
+      li {
+        a {
+          text-decoration: none;
+          color: white;
+          font-weight: 500;
+          transition: color .2s;
+
+          &:hover {
+            color: #60a5fa;
+          }
+        }
+      }
+    }
+
+    .nav-mobile {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 32px;
+      height: 24px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+
+      span {
+        display: block;
+        width: 100%;
+        height: 3px;
+        background: white;
+        border-radius: 2px;
+      }
+    }
+  }
+}
+
+
+
+
+
+@media (max-width: 768px) {
+
+ header #menu {
+    position: relative;
+  }
+
+ header #menu .nav-mobile {
+    display: flex;
+  }
+
+ header #menu .nav-menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    width: 200px;
+    background: #1f2937;
+    padding: 1rem;
+    gap: 1rem;
+    border-radius: 8px;
+  }
+
+  header #menu .nav-menu.open {
+    display: flex;
+  }
+}
+
+
+
+
+// FROMULARIO
+
+.mission-form-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 30px;
+
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+
+  h2 {
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 28px;
+    font-weight: 600;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    label {
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px 14px;
+      box-sizing: border-box;
+
+      border: 1px solid #ccc;
+      border-radius: 6px;
+
+      font-size: 15px;
+      outline: none;
+
+      transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+
+      &:focus {
+        border-color: #333;
+        box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);
+      }
+    }
+  }
+
+  button {
+    margin-top: 10px;
+    padding: 12px 20px;
+
+    border: none;
+    border-radius: 6px;
+
+    background-color: #222;
+    color: white;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: #444;
+    }
+
+    &:active {
+      transform: translateY(1px);
+    }
+  }
+}
+
+
+// MAPA
+
+#map {
+  height: 500px;
+  width: 100%;
+}
+
+
+
+//WAYPOINT LIST
+
+.waypoint-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 16px;
+  background-color: #f8f9fa;
+}

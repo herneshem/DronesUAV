@@ -7,7 +7,7 @@ import { RouterLink } from '@angular/router';
   selector: 'app-mission-card',
   imports: [RouterLink],
   templateUrl: './mission-card.component.html',
-  styles: ``
+  styleUrl: './mission-card.component.scss'
 })
 export class MissionCardComponent  {
 

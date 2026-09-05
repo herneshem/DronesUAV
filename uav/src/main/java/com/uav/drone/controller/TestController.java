@@ -16,6 +16,8 @@ public class TestController {
         this.telemetryPublisher = telemetryPublisher;
     }
 
+
+    //PARA PRUEBA
     @GetMapping("/telemetry")
     public String sendTelemetry() {
 
@@ -34,4 +36,6 @@ public class TestController {
 
         return "Telemetría enviada";
     }
+
+
 }

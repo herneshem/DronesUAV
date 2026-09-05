@@ -9,7 +9,7 @@ import { DroneService } from '../../../core/services/drone.service';
   selector: 'app-mission-create',
   imports: [FormsModule],
   templateUrl: './mission-create.component.html',
-  styles: ``
+  styleUrl: './mission-create.component.scss'
 })
 export class MissionCreateComponent implements OnInit {
 

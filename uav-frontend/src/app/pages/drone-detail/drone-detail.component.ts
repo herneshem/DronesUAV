@@ -13,7 +13,7 @@ import { MissionCardComponent } from '../../shared/components/mission-card/missi
   selector: 'app-drone-detail',
   imports: [TelemetryCardComponent, MissionCardComponent, RouterLink],
   templateUrl: './drone-detail.component.html',
-  styles: ``
+   styleUrl: './drone-detail.component.scss'
 })
 export class DroneDetailComponent implements OnInit {
 
@@ -39,8 +39,8 @@ export class DroneDetailComponent implements OnInit {
       }
       });
 
-      // Telemetría (todavía simulada)
-      this.telemetry = this.telemetryService.getTelemetry(droneId);
+      // Telemetría real mediante WebSocket
+       this.telemetryService.getTelemetry().subscribe({ next: (telemetry) => { if (telemetry) { this.telemetry = telemetry; } }, error: (error) => { console.error('Error al recibir telemetría:', error); } });
       
       // Obtener misiones
       this.missionService.getMissions().subscribe({

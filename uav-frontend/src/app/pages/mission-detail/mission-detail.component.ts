@@ -15,7 +15,7 @@ import { WebSocketServiceService } from '../../core/services/web-socket-service'
   selector: 'app-mission-detail',
   imports: [WaypointCardComponent, RouterLink, MissionMapComponent, TelemetryCardComponent],
   templateUrl: './mission-detail.component.html',
-  styles: ``
+  styleUrl: './mission-detail.component.css'
 })
 export class MissionDetailComponent implements OnInit {
 

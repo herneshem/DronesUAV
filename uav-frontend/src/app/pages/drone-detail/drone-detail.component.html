@@ -1,23 +1,130 @@
+<div class="drone-detail">
 
-<a routerLink="/drone">← Volver a Drones</a>
+  <a routerLink="/drone" class="back-link">
+    ← Volver a Drones
+  </a>
 
-<h3>Drone Details</h3>
+  @if (drone) {
 
-<p>ID: {{ drone?.id }}</p>
-<p>Nombre: {{ drone?.nombre }}</p>
-<p>Estado: {{ drone?.estado }}</p>
+    <!-- CABECERA -->
+    <div class="page-header">
+
+      <div>
+        <span class="page-label">UAV / DETALLE</span>
+        <h1>{{ drone.nombre }}</h1>
+        <p>Información y monitorización del vehículo aéreo</p>
+      </div>
+
+      <div class="drone-status">
+        <span class="status-dot"></span>
+        {{ drone.estado }}
+      </div>
+
+    </div>
 
 
-<h3>Telemetry</h3>
-@if(telemetry) {
- <app-telemetry-card [telemetry]="telemetry"></app-telemetry-card>
+    <!-- INFORMACIÓN DEL DRONE -->
+    <section class="info-section">
 
-}
+      <div class="section-title">
+        <h2>Información del UAV</h2>
+      </div>
 
-<h3>Misiones</h3>
-@for (mission of missions; track mission.id) {
-  <app-mission-card [mission]="mission"></app-mission-card>
-}
+      <div class="info-grid">
+
+        <div class="info-card">
+          <span class="info-label">ID</span>
+          <strong>{{ drone.id }}</strong>
+        </div>
+
+        <div class="info-card">
+          <span class="info-label">Nombre</span>
+          <strong>{{ drone.nombre }}</strong>
+        </div>
+
+        <div class="info-card">
+          <span class="info-label">Estado</span>
+          <strong>{{ drone.estado }}</strong>
+        </div>
+
+      </div>
+
+    </section>
 
 
+    <!-- TELEMETRÍA -->
+    <section class="content-section">
 
+      <div class="section-title">
+        <div>
+          <span class="section-label">TIEMPO REAL</span>
+          <h2>Telemetría</h2>
+        </div>
+
+        @if (telemetry) {
+          <span class="live-indicator">
+            ● LIVE
+          </span>
+        }
+      </div>
+
+      @if (telemetry) {
+
+        <app-telemetry-card
+          [telemetry]="telemetry">
+        </app-telemetry-card>
+
+      } @else {
+
+        <div class="empty-state">
+          No hay datos de telemetría disponibles.
+        </div>
+
+      }
+
+    </section>
+
+
+    <!-- MISIONES -->
+    <section class="content-section">
+
+      <div class="section-title">
+
+        <div>
+          <span class="section-label">OPERACIONES</span>
+          <h2>Misiones</h2>
+        </div>
+
+        <span class="mission-count">
+          {{ missions.length }} misiones
+        </span>
+
+      </div>
+
+      @if (missions.length > 0) {
+
+        <div class="missions-grid">
+
+          @for (mission of missions; track mission.id) {
+
+            <app-mission-card
+              [mission]="mission">
+            </app-mission-card>
+
+          }
+
+        </div>
+
+      } @else {
+
+        <div class="empty-state">
+          Este UAV no tiene misiones asignadas.
+        </div>
+
+      }
+
+    </section>
+
+  }
+
+</div>

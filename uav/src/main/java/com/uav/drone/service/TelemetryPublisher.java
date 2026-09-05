@@ -14,11 +14,6 @@ public class TelemetryPublisher {
         this.messagingTemplate = messagingTemplate;
     }
 
-    //METODO
-    //public void sendTelemetry(TelemetryDto telemetry) {
-    //    System.out.println("Publicando: " + telemetry);
-     //   messagingTemplate.convertAndSend("/topic/telemetry", telemetry);
-   // }
 
 
     public void sendTelemetry(TelemetryDto telemetry) {

@@ -29,6 +29,7 @@
 	<properties>
 		<java.version>17</java.version>
 	</properties>
+
     <dependencies>
 
         <dependency>
@@ -76,7 +77,14 @@
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>io.mavsdk</groupId>
+            <artifactId>mavsdk</artifactId>
+            <version>3.16.0</version>
+        </dependency>
     </dependencies>
+
+
 	<build>
 		<plugins>
 			<plugin>

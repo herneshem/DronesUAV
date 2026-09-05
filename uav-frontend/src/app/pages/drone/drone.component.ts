@@ -10,7 +10,7 @@ import { TelemetryService } from '../../core/services/telemetry.service';
   standalone: true,
   imports: [CommonModule, DroneCardComponent],
   templateUrl: './drone.component.html',
-  styles: ``
+  styleUrl: './drone.component.scss'
 })
 export class DroneComponent implements OnInit {
 

@@ -48,4 +48,12 @@ public class MissionController {
     public void deleteMission(@PathVariable Long id) {
         missionService.deleteMission(id);
     }
+
+    @PostMapping("/{id}/start")
+    public String startMission(@PathVariable Long id) {
+
+        missionService.startMission(id);
+
+        return "Misión iniciada";
+    }
 }

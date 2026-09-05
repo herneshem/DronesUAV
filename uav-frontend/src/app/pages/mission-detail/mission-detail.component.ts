@@ -9,12 +9,13 @@ import { MissionMapComponent } from "../../shared/components/mission-map/mission
 import { TelemetryCardComponent } from "../../shared/components/telemetry-card/telemetry-card.component";
 import { Telemetry } from '../../models/telemetry';
 import { ViewChild } from '@angular/core';
+import { WebSocketServiceService } from '../../core/services/web-socket-service';
 
 @Component({
   selector: 'app-mission-detail',
   imports: [WaypointCardComponent, RouterLink, MissionMapComponent, TelemetryCardComponent],
   templateUrl: './mission-detail.component.html',
-  styles: ``
+  styleUrl: './mission-detail.component.css'
 })
 export class MissionDetailComponent implements OnInit {
 
@@ -32,15 +33,18 @@ export class MissionDetailComponent implements OnInit {
   }
   constructor(private missionService: MissionService,
     private waypointService: WaypointService,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+  private webSocketService: WebSocketServiceService) {
     console.log('MISSION DETAIL CARGADO');
   }
 
   ngOnInit() {
 
+    
     const missionId = Number(this.route.snapshot.paramMap.get('id')); // Get the mission ID from the route parameters
     console.log('ID DE MISIÓN:', missionId);
-
+    
+      // CARGAR MISION
     if (missionId) {
       this.missionService.getMission(missionId).subscribe({
         next: (mission) => {
@@ -49,6 +53,7 @@ export class MissionDetailComponent implements OnInit {
         }
       });
 
+      // CARGAR WAYPOINTS DE LA MISION
       this.waypointService.getWaypointsByMissionId(missionId).subscribe({
         next: (waypoints) => {
           this.waypoints = waypoints;
@@ -60,6 +65,18 @@ export class MissionDetailComponent implements OnInit {
       });
     }
 
+
+    // Suscribirse a los datos de telemetría del WebSocket
+    this.webSocketService.connect().subscribe({
+      next: (telemetry) => {
+         console.log('Telemetría recibida:', telemetry);
+        this.telemetry = telemetry;
+       
+      },
+      error: (error) => {
+        console.error('Error en la conexión WebSocket:', error);
+      }
+    });
   }
   //CON REFERENCIA AL ESTADO DEL DRON
   @ViewChild(MissionMapComponent)

@@ -1,0 +1,135 @@
+.mission-detail {
+  padding: 30px;
+  background: #f5f7fa;
+  min-height: calc(100vh - 80px);
+}
+
+/* Volver */
+.mission-back {
+  display: inline-block;
+  margin-bottom: 20px;
+  color: #2563eb;
+  text-decoration: none;
+  font-size: 14px;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+/* Cabecera */
+.mission-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+
+  h1 {
+    margin: 0 0 10px;
+    font-size: 28px;
+    font-weight: 600;
+    color: #1f2937;
+  }
+
+  p {
+    margin: 5px 0;
+    color: #6b7280;
+    font-size: 14px;
+  }
+}
+
+/* Botón editar */
+.edit-mission {
+  display: inline-block;
+  padding: 9px 16px;
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  color: #374151;
+  text-decoration: none;
+  font-size: 14px;
+  cursor: pointer;
+
+  &:hover {
+    background: #f3f4f6;
+  }
+}
+
+/* Secciones */
+.mission-section {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+
+  h2 {
+    margin: 0 0 20px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #1f2937;
+  }
+}
+
+/* Waypoints */
+.waypoints-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.add-waypoint {
+  display: inline-block;
+  margin-top: 15px;
+  color: #2563eb;
+  text-decoration: none;
+  font-size: 14px;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+/* Controles de misión */
+.mission-controls {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+
+  button {
+    padding: 9px 16px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    background: #ffffff;
+    color: #374151;
+    cursor: pointer;
+    font-size: 14px;
+
+    &:hover {
+      background: #f3f4f6;
+    }
+  }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+
+  .mission-detail {
+    padding: 20px;
+  }
+
+  .mission-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .mission-controls {
+    flex-direction: column;
+
+    button {
+      width: 100%;
+    }
+  }
+}

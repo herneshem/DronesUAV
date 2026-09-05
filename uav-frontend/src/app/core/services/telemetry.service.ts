@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Client, IMessage } from '@stomp/stompjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Telemetry } from '../../models/telemetry';
 
 @Injectable({
@@ -6,25 +8,47 @@ import { Telemetry } from '../../models/telemetry';
 })
 export class TelemetryService {
 
-  constructor() { }
+  private client!: Client;
+  private telemetrySubject = new BehaviorSubject<Telemetry | null>(null);
 
-  getTelemetry(droneId: number): Telemetry | undefined {
-    // Placeholder implementation - replace with actual telemetry data retrieval logic
-    const telemetries = [
+  constructor() {
 
-      { droneId: 1, bateria: 85, altitud: 1200, velocidad: 45, latitud: 37.7749, longitud: -122.4194, estado: 'En vuelo' },
-      { droneId: 2, bateria: 60, altitud: 800, velocidad: 30, latitud: 34.0522, longitud: -118.2437, estado: 'En vuelo' },
-      { droneId: 3, bateria: 90, altitud: 1500, velocidad: 50, latitud: 40.7128, longitud: -74.0060, estado: 'En vuelo' }
+    this.client = new Client({
+      brokerURL: 'ws://localhost:8080/ws',
+      onConnect: () => {
+
+        console.log('WebSocket conectado');
+        this.client.subscribe(
+          '/topic/telemetry',
+          (message: IMessage) => {
+            const telemetry: Telemetry =
+              JSON.parse(message.body);
+            console.log('Telemetría recibida:', telemetry);
+            this.telemetrySubject.next(telemetry);
+
+          });
+      },
+
+      onStompError: (frame) => {
+        console.error(
+          'Error STOMP:',
+          frame.headers['message'],
+          frame.body
+        );
+      },
 
 
-    ];
 
+      onWebSocketError: (error) => {
+        console.error('Error WebSocket:', error);
+      }
+    });
 
-
-    return telemetries.find(telemetry => telemetry.droneId === droneId);
-
-
+    this.client.activate();
   }
 
+  getTelemetry(): Observable<Telemetry | null> {
+    return this.telemetrySubject.asObservable();
 
+  }
 }

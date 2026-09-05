@@ -54,4 +54,14 @@ public class MissionService {
 
         missionRepository.delete(mission);
     }
+
+
+    //EJECUTAR MISION
+    public void startMission(Long id) {
+
+        Mission mission = missionRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Misión no encontrada"));
+
+        System.out.println("Iniciando misión: " + mission.getNombre());
+    }
 }

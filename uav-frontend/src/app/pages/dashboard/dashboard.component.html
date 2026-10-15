@@ -1,7 +1,39 @@
+<div class="dashboard">
 
+  <div class="dashboard-header">
 
-<app-drone></app-drone>
+    <div>
+      <h1>UAV Dashboard</h1>
+      <p>Gestión y monitorización de vehículos aéreos no tripulados</p>
+    </div>
 
-<app-mission></app-mission>
+    <div class="system-status">
+      <span class="status-dot"></span>
+      Sistema operativo
+    </div>
 
-<app-waypoint></app-waypoint>
+  </div>
+
+  <main class="dashboard-content">
+
+    <section
+      class="dashboard-section"
+      [routerLink]="['/drone']">
+
+      <h2>UAV</h2>
+      <app-drone></app-drone>
+
+    </section>
+
+    <section
+      class="dashboard-section"
+      [routerLink]="['/mission']">
+
+      <h2>Misión</h2>
+      <app-mission></app-mission>
+
+    </section>
+
+  </main>
+
+</div>

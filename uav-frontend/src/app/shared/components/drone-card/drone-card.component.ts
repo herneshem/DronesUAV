@@ -7,7 +7,7 @@ import { RouterLink } from '@angular/router';
   selector: 'app-drone-card',
   imports: [RouterLink],
   templateUrl: './drone-card.component.html',
-  styles: ``
+  styleUrl: './drone-card.component.scss'
 })
 export class DroneCardComponent {
 

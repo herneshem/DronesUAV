@@ -1,8 +1,22 @@
+<div class="drone-page">
 
-<h2>DRONES</h2>
+  <div class="drone-header">
+    <div>
+      <h1>Drones</h1>
+      <p>Gestión de vehículos aéreos no tripulados</p>
+    </div>
+  </div>
 
-@for (drone of drones; track drone.id) {
-    <app-drone-card [drone]="drone"></app-drone-card>
-}
+  <div class="drone-list">
 
+    @for (drone of drones; track drone.id) {
 
+      <app-drone-card
+        [drone]="drone">
+      </app-drone-card>
+
+    }
+
+  </div>
+
+</div>
